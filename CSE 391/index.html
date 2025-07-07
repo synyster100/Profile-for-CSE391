@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tawkir Arifin - Full Stack Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+    --green: #006b47; /* Brighter green */
+    --brown: #cc7b32; /* Slightly lighter brown */
+    --light-bg: #ffffff;
+    --dark-bg: #000000;
+    --light-table: #f9f9f9;
+    --dark-table: #1a1a1a;
+    }
+
+    body {
+      font-family: 'Tektur', 'Bitcount Grid Double', sans-serif;
+      font-size: 18px;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.4s, color 0.4s;
+    }
+
+    body.light-mode {
+      background-color: var(--light-bg);
+      color: #000;
+    }
+
+    body.dark-mode {
+      background-color: var(--dark-bg);
+      color: #fff;
+    }
+
+    header {
+      background-color: var(--green);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brown);
+      font-size: 2.5rem;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 0.8rem;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--brown);
+    }
+
+    .toggle-container {
+      margin-left: 1rem;
+    }
+
+    .slider {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+      background-color: #ccc;
+      border-radius: 34px;
+      cursor: pointer;
+    }
+
+    .slider:before {
+      content: "";
+      position: absolute;
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      border-radius: 50%;
+      transition: transform 0.4s;
+    }
+
+    .toggle-container input {
+      display: none;
+    }
+
+    .toggle-container input:checked + .slider {
+      background-color: var(--brown);
+    }
+
+    .toggle-container input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 3rem 1rem;
+      transition: background-color 0.4s, color 0.4s;
+    }
+
+    .dark-mode .hero {
+      background-color: var(--dark-bg);
+    }
+
+    .light-mode .hero {
+      background-color: #f5f5f5;
+      color: #000;
+    }
+
+    .hero img {
+      border-radius: 50%;
+      border: 4px solid white;
+      width: 180px;
+      margin-bottom: 1rem;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    h2, h3 {
+      color: var(--green);
+    }
+
+    a {
+      color: var(--brown);
+    }
+
+    blockquote {
+      border-left: 4px solid #ccc;
+      padding-left: 1rem;
+      font-style: italic;
+      color: #bbb;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      border: 1px solid #999;
+      padding: 0.5rem;
+      text-align: left;
+    }
+
+    .dark-mode th {
+      background-color: #333;
+      color: white;
+    }
+
+    .light-mode th {
+      background-color: #e0e0e0;
+      color: black;
+    }
+
+    .dark-mode tr:nth-child(even) {
+      background-color: var(--dark-table);
+    }
+
+    .light-mode tr:nth-child(even) {
+      background-color: var(--light-table);
+    }
+
+    form {
+      padding: 1rem;
+      border-radius: 6px;
+      transition: background-color 0.4s, color 0.4s;
+    }
+
+    .dark-mode form {
+      background-color: #1a1a1a;
+      color: white;
+    }
+
+    .light-mode form {
+      background-color: #f0f0f0;
+      color: black;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.25rem;
+      margin-bottom: 1rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-family: 'Tektur', 'Bitcount Grid Double', sans-serif;
+    }
+
+    footer {
+      background-color: var(--green);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    /* New styles for experience section */
+    .experience-item {
+      margin-bottom: 2rem;
+    }
+    .experience-item h3 {
+      margin-bottom: 0.2rem;
+    }
+    .experience-item em {
+      color: var(--brown);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body class="dark-mode">
+  <header>
+    <h1>Tawkir Arifin</h1>
+    <nav>
+      <a href="#about">About Me</a>
+      <a href="#experience">Experience</a>
+      <a href="#expertise">Expertise</a>
+      <a href="favorites.html" target="_blank">Favorites</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <label class="toggle-container">
+      <input type="checkbox" onclick="toggleMode()">
+      <span class="slider"></span>
+    </label>
+  </header>
+
+  <section class="hero">
+    <img src="profile.jpg" alt="Tawkir's Photo" />
+    <h2>Full Stack Developer | AI Researcher</h2>
+    <p>Building scalable web applications with secure coding practices</p>
+  </section>
+
+  <main>
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        Hello! I'm Tawkir, a Computer Science and Engineering student at
+        <a href="https://www.bracu.ac.bd/" target="_blank">BRAC University</a>.
+        I'm a Full-Stack Developer skilled in Python, JavaScript, React, Flask, and Django,
+        with experience building scalable web applications and RESTful APIs.
+      </p>
+      <p>
+        Passionate about both development and cybersecurity, I focus on creating efficient,
+        user-friendly, and maintainable solutions with secure coding practices.
+      </p>
+    </section>
+
+    <section id="experience">
+      <h2>Professional Experience</h2>
+      
+      <div class="experience-item">
+        <h3>Bangladesh Council of Scientific and Industrial Research</h3>
+        <em>Research Intern</em>
+        <ul>
+          <li>Conducted research on air quality prediction using ARIMA, SARIMA, LSTM, and Transformer models</li>
+          <li>Implemented time series forecasting with Python, TensorFlow/Keras, and statsmodels</li>
+          <li>Analyzed AQI datasets and evaluated model performance using MSE and MAE metrics</li>
+        </ul>
+      </div>
+
+      <div class="experience-item">
+        <h3>Neurochip Industries Limited</h3>
+        <em>Software Engineer Intern</em>
+        <ul>
+          <li>Contributed to enterprise application development using .NET Framework and C#</li>
+          <li>Gained professional software development experience in a team environment</li>
+        </ul>
+      </div>
+
+      <div class="experience-item">
+        <h3>BRAC University Computer Club</h3>
+        <em>Former Senior Executive - Event Management</em>
+        <ul>
+          <li>Organized coding contests, technical seminars, and workshops</li>
+          <li>Promoted student engagement in software development and data science</li>
+        </ul>
+      </div>
+        <div class="experience-item">
+        <h3>BRAC University MONON</h3>
+        <em>President</em>
+        <ul>
+            <li>Led and organized multiple internal cultural events and collaborative shows, overseeing end-to-end event
+ planning, team coordination, and execution to promote creativity and student engagement.</li>
+            <li> Performed as a keyboardist, guitarist, and vocalist in various university and inter-university musical shows
+ and competitions, representing the club and contributing to its cultural presence.</li>
+        </ul>
+        </div>
+    </section>
+
+    <section id="expertise">
+      <h2>Technical Expertise</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Languages</th>
+            <th>Web & Frameworks</th>
+            <th>UI/UX - 3D Animation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Python</td>
+            <td>HTML & CSS</td>
+            <td>Figma</td>
+          </tr>
+          <tr>
+            <td>JavaScript</td>
+            <td>Flask & Django</td>
+            <td>ThreeJS</td>
+          </tr>
+          <tr>
+            <td>C Programming</td>
+            <td>React & Next</td>
+            <td>Blender</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="favorites">
+      <h2>Favorites</h2>
+      <blockquote>
+        "The only limit to our realization of tomorrow is our doubts of today." – F.D. Roosevelt
+      </blockquote>
+
+      <h3>Top 5 Favorite Series</h3>
+      <ol>
+        <li>Friends</li>
+        <li>The Big Bang Theory</li>
+        <li>Money Heist: La casa de papel</li>
+        <li>Mission Impossible</li>
+        <li>Game of Thrones</li>
+      </ol>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Me</h2>
+      <p>
+        <strong>Phone:</strong> +8801946-282670, +8801307-837848<br>
+        <strong>Email:</strong> tawkirarifin200@gmail.com<br>
+        <strong>Address:</strong> 465 North Shahjahanpur, Dhaka
+      </p>
+      <form action="mailto:tawkirarifin200@gmail.com" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" required />
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required />
+
+        <label for="message">Message:</label>
+        <textarea name="message" id="message" rows="4"></textarea>
+
+        <input type="submit" value="Send" />
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      &copy; 2025 Tawkir Arifin | 
+      <a href="https://www.linkedin.com/in/tawkir-arifin-310a00230/" target="_blank">LinkedIn</a> |
+      <a href="https://github.com/synyster100" target="_blank">GitHub</a> |
+      <a href="https://arifin-portfolio.vercel.app/" target="_blank">Portfolio</a>
+    </p>
+    <p>Page last modified on <span id="lastModified"></span></p>
+  </footer>
+
+  <script>
+    document.getElementById("lastModified").textContent = document.lastModified;
+
+    function toggleMode() {
+      const body = document.body;
+      body.classList.toggle("dark-mode");
+      body.classList.toggle("light-mode");
+    }
+  </script>
+</body>
+</html>
